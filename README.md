@@ -18,6 +18,10 @@ It really is very simple: you can set total amount per stat, current value and e
 and calculate how to spend to use Effort.
 As of today, it save in localStorage your current situation, so there is not a way to keep track of more than one character,
 at any given moment.
+
+demo here:
+http://cirunz.github.io/NumenEmbers/
+
 This is probably the next thing I'm going to add: capability to save more characters.
 
 There are some other things I can add, but really the main focus is to keep it simple and effective. Something I would to add:
