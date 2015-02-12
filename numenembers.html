@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!-- HTML5 Hello world by kirupa - http://www.kirupa.com/html5/getting_your_feet_wet_html5_pg1.htm -->
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>NumeNembers - Numenera character electronic sheet</title>
+    <link rel="shortcut icon" type="image/ico" href="css/images/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+    <link id="MainCSS" href="css/numenembers.0.4.css" type="text/css" rel="Stylesheet" />
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2.min.js"></script>
+    <script type="text/javascript" src="js/numenembers.0.4.js"></script>
+</head>
+
+<body>
+    <div class="page-container">
+        <div class="header">
+            <img alt="Numenera Logo" src="css/images/Numenera_Logo.png" />
+            <br>
+            <span>Stats tracker</span>
+        </div>
+        <div class="list-container">
+            <ul class="chars">
+                <li id="line-might">
+                    <div class="clearfix">
+                        <div class="char-header"><img alt="Migth" src="css/images/might.png"><span class="title">Might</span>
+                        </div>
+                        <div class="char-body">
+                            <div>
+                                <span>Total: </span>
+                                <input type="number" id="total-might" class="total-value" tabindex="1" />
+                            </div>
+                            <div>
+                                <span>Current: </span>
+                                <input type="number" id="value-might" class="current-value" tabindex="2" />
+                                <span>Edge: </span>
+                                <input type="number" id="edge-might" class="edge-value" tabindex="3" />
+                            </div>
+                        </div>
+                        <div class="char-buttons">
+                            <button type="button" class="add-button button" title="Add 1 to current value">+1</button>
+                            <button type="button" class="sub-button button" title="Subtract 1 to current value">-1</button>
+                            <button type="button" class="add5-button button" title="Add 5 to current value">+5</button>
+                            <button type="button" class="sub5-button button" title="Subtract 5 to current value">-5</button>
+                            <button type="button" class="effort-button button" title="Calculate an effort on this stat">Effort...</button>
+                            <button type="button" class="reset-button button" title="Reset the current value to the total value">Reset</button>
+                        </div>
+                    </div>
+                </li>
+                <li id="line-speed">
+                    <div class="clearfix">
+                        <div class="char-header"><img alt="Speed" src="css/images/speed.png"><span class="title">Speed</span>
+                        </div>
+                        <div class="char-body">
+                            <div>
+                                <span>Total: </span>
+                                <input type="number" id="total-speed" class="total-value" tabindex="4" />
+                            </div>
+                            <div>
+                                <span>Current: </span>
+                                <input type="number" id="value-speed" class="current-value" tabindex="5" />
+                                <span>Edge: </span>
+                                <input type="number" id="edge-speed" class="edge-value" tabindex="6" />
+                            </div>
+                        </div>
+                        <div class="char-buttons">
+                            <button type="button" class="add-button button" title="Add 1 to current value">+1</button>
+                            <button type="button" class="sub-button button" title="Subtract 1 to current value">-1</button>
+                            <button type="button" class="add5-button button" title="Add 5 to current value">+5</button>
+                            <button type="button" class="sub5-button button" title="Subtract 5 to current value">-5</button>
+                            <button type="button" class="effort-button button" title="Calculate an effort on this stat">Effort...</button>
+                            <button type="button" class="reset-button button" title="Reset the current value to the total value">Reset</button>
+                        </div>
+                    </div>
+                </li>
+                <li id="line-intellect">
+                    <div class="clearfix">
+                        <div class="char-header"><img alt="Intellect" src="css/images/intellect.png"><span class="title">Intellect</span>
+                        </div>
+                        <div class="char-body">
+                            <div>
+                                <span>Total: </span>
+                                <input type="number" id="total-intellect" class="total-value" tabindex="7" />
+                            </div>
+                            <div>
+                                <span>Current: </span>
+                                <input type="number" id="value-intellect" class="current-value" tabindex="8" />
+                                <span>Edge: </span>
+                                <input type="number" id="edge-intellect" class="edge-value" tabindex="9" />
+                            </div>
+                        </div>
+                        <div class="char-buttons">
+                            <button type="button" class="add-button button" title="Add 1 to current value">+1</button>
+                            <button type="button" class="sub-button button" title="Subtract 1 to current value">-1</button>
+                            <button type="button" class="add5-button button" title="Add 5 to current value">+5</button>
+                            <button type="button" class="sub5-button button" title="Subtract 5 to current value">-5</button>
+                            <button type="button" class="effort-button button" title="Calculate an effort on this stat">Effort...</button>
+                            <button type="button" class="reset-button button" title="Reset the current value to the total value">Reset</button>
+                        </div>
+                    </div>
+                </li>
+        </div>
+        </ul>
+        <div class="list-footer">
+            <button type="button" class="reset-all-button button" title="Reset all current values to total">Reset all current to total</button>
+        </div>
+    </div>
+    <div class="page-footer">
+        <a href="http://www.numenera.com/" target="_blank">Numenera</a> and its logo are trademarks of <a href="http://www.montecookgames.com/" target="_blank">Monte Cook Games</a>, 
+        LLC in the U.S.A. and other countries. All Monte Cook Games characters and character names, and the distinctive likenesses thereof, are trademarks of Monte Cook Games, LLC. 
+        Content derived from Monte Cook Games publications is © 2013-2014 Monte Cook Games, LLC.</br>
+        <div class="full-disclaimer" title="Click to see full disclaimer statement">See full disclaimer</div>
+        <div class="full-disclaimer-panel" style="display: none;">The Monte Cook Games logo, Numenera, and the Numenera logo are trademarks of Monte Cook Games, LLC in the U.S.A. and other countries. All Monte Cook Games characters and character names, and the distinctive likenesses thereof, are trademarks of Monte Cook Games, LLC. Content on this site or associated files derived from Monte Cook Games publications is © 2013-2014 Monte Cook Games, LLC. Monte Cook Games permits web sites and similar fan-created publications for their games, subject to the policy given at http://www.numenera.com/fan-use-policy/. The contents of this site are for personal, non-commercial use only. Use of Monte Cook Games’s trademarks and copyrighted materials anywhere on this site and its associated files should not be construed as a challenge to those trademarks or copyrights. Materials on this site may not be reproduced or distributed except with the permission of the site owner and in compliance with Monte Cook Games policy given at http://www.numenera.com/fan-use-policy/.</div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            init_values();
+            init_ui();
+        });
+    </script>
+
+</body>
+
+</html>
