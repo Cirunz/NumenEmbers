@@ -7,10 +7,10 @@
     <title>NumeNembers - Numenera character electronic sheet</title>
     <link rel="shortcut icon" type="image/ico" href="css/images/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
-    <link id="MainCSS" href="css/numenembers.0.4.css" type="text/css" rel="Stylesheet" />
+    <link id="MainCSS" href="css/numenembers.0.5.css" type="text/css" rel="Stylesheet" />
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2.min.js"></script>
-    <script type="text/javascript" src="js/numenembers.0.4.js"></script>
+    <script type="text/javascript" src="js/numenembers.0.5.js"></script>
 </head>
 
 <body>
@@ -21,6 +21,8 @@
             <span>Stats tracker</span>
         </div>
         <div class="list-container">
+            <div class="help-container"><a href="#">Show help text</a>
+            </div>
             <ul class="chars">
                 <li id="line-might">
                     <div class="clearfix">
@@ -29,7 +31,7 @@
                         <div class="char-body">
                             <div>
                                 <span>Total: </span>
-                                <input type="number" id="total-might" class="total-value" tabindex="1" />
+                                <input type="number" id="total-might" class="total-value" rel="tooltip" tabindex="1" />
                             </div>
                             <div>
                                 <span>Current: </span>
@@ -47,6 +49,11 @@
                             <button type="button" class="reset-button button" title="Reset the current value to the total value">Reset</button>
                         </div>
                     </div>
+                    <div class="info-panel top leftcorner" style="display: none;">
+                        <div class="triangle"></div>Total value is the maximum value for this stat, when the character is fully restored.
+                        <br/> Current value is the current amount; +/- buttons, as long as effort, affect this value.
+                        <br/> Edge is the discount the character get, on the total expense of an effort action.</div>
+
                 </li>
                 <li id="line-speed">
                     <div class="clearfix">
@@ -73,6 +80,10 @@
                             <button type="button" class="reset-button button" title="Reset the current value to the total value">Reset</button>
                         </div>
                     </div>
+                    <div class="info-panel top rightcorner" style="display: none;">
+                        <div class="triangle"></div>+1/-1 and +5/-5 buttons make a direct change to the current value, ignoring Edge value. Effort shows a panel with additional data, to calculate stat expense to lower difficulty of an action.
+                        <br/> In this matter, Edge is subtracted from final expense for the effort.<br/>
+                        Reset button reset the current value for the stat to total value.</div>
                 </li>
                 <li id="line-intellect">
                     <div class="clearfix">
@@ -95,23 +106,76 @@
                             <button type="button" class="sub-button button" title="Subtract 1 to current value">-1</button>
                             <button type="button" class="add5-button button" title="Add 5 to current value">+5</button>
                             <button type="button" class="sub5-button button" title="Subtract 5 to current value">-5</button>
-                            <button type="button" class="effort-button button" title="Calculate an effort on this stat">Effort...</button>
+                            <button type="button" class="effort-button button" title="Calculate an effort on this stat" rel="tooltip">Effort...</button>
                             <button type="button" class="reset-button button" title="Reset the current value to the total value">Reset</button>
                         </div>
                     </div>
                 </li>
+                <li id="line-shins">
+                    <div class="clearfix">
+                        <div class="char-header"><img alt="Money" src="css/images/shins.png"><span class="title">Shins</span>
+                        </div>
+                        <div class="char-body">
+                            <div>
+                                <span>Current: </span>
+                                <input type="number" id="value-shins" class="current-value" tabindex="10" title="Current amount of shins in character possession" rel="tooltip" />
+                            </div>
+                            <div style="width: 300px;">
+                            </div>
+                        </div>
+                        <div class="char-buttons">
+                            <button type="button" class="add-button button" title="Add 1 to current value">+1</button>
+                            <button type="button" class="sub-button button" title="Subtract 1 to current value">-1</button>
+                            <button type="button" class="add5-button button" title="Add 5 to current value">+5</button>
+                            <button type="button" class="sub5-button button" title="Subtract 5 to current value">-5</button>
+                        </div>
+                    </div>
+                </li>
+                <li id="line-recovery">
+                    <div class="clearfix">
+                        <div class="char-header"><img alt="Recovery" src="css/images/recovery.png"><span class="title">Recovery</span>
+                        </div>
+                        <div class="char-body">
+                            <div>
+                                <span>Bonus: </span>
+                                <input type="number" class="recovery-bonus" tabindex="11" value="2" rel="tooltip" />
+                            </div>
+                            <div>
+                                <span>Extras: </span>
+                                <input type="number" class="extra-recovery" tabindex="12" value="0" />
+                            </div>
+                            <div>
+                                <span>Next: </span>
+                                <div class="current-recovery read-only">1 Action</div>
+                            </div>
+                        </div>
+                        <div class="char-buttons">
+                            <button type="button" class="recovery-button button" title="Make a recovery roll, consuming a daily recovery action">Roll like Hell!</button>
+                            <button type="button" class="recovery-reset-button button" title="Reset to first recovery action">Reset</button>
+                        </div>
+                    </div>
+                    <div class="info-panel top leftcorner" style="display: none;">
+                        <div class="triangle"></div>The base recovery roll bonus is added to a rolled D6 everytime the character perform a recovery roll.<br/>
+                                    Extras is the amount of extra recovery action character may perform daily; after that, next roll will take 10 minutes<br/>
+                                    Next is the time the next recovery roll will take, comprensive of residual extra actions.</div>
+                </li>
         </div>
         </ul>
         <div class="list-footer">
-            <button type="button" class="reset-all-button button" title="Reset all current values to total">Reset all current to total</button>
+            <button type="button" class="reset-all-button button" title="Reset all current values to total">Reset all</button>
         </div>
+        <div class="info-panel top rightcorner" style="display: none;">
+                        <div class="triangle"></div>Reset all set all the stats current values to their total values, and the daily recovery roll to the first of the day (1 action roll).<br/>
+                        Does not affect shins value.</div>
     </div>
     <div class="page-footer">
-        <a href="http://www.numenera.com/" target="_blank">Numenera</a> and its logo are trademarks of <a href="http://www.montecookgames.com/" target="_blank">Monte Cook Games</a>, 
-        LLC in the U.S.A. and other countries. All Monte Cook Games characters and character names, and the distinctive likenesses thereof, are trademarks of Monte Cook Games, LLC. 
-        Content derived from Monte Cook Games publications is © 2013-2014 Monte Cook Games, LLC.</br>
+        <a href="http://www.numenera.com/" target="_blank">Numenera</a> and its logo are trademarks of <a href="http://www.montecookgames.com/" target="_blank">Monte Cook Games</a>, LLC in the U.S.A. and other countries. All Monte Cook Games characters
+        and character names, and the distinctive likenesses thereof, are trademarks of Monte Cook Games, LLC. Content derived from Monte Cook Games publications is © 2013-2014 Monte Cook Games, LLC.</br>
         <div class="full-disclaimer" title="Click to see full disclaimer statement">See full disclaimer</div>
-        <div class="full-disclaimer-panel" style="display: none;">The Monte Cook Games logo, Numenera, and the Numenera logo are trademarks of Monte Cook Games, LLC in the U.S.A. and other countries. All Monte Cook Games characters and character names, and the distinctive likenesses thereof, are trademarks of Monte Cook Games, LLC. Content on this site or associated files derived from Monte Cook Games publications is © 2013-2014 Monte Cook Games, LLC. Monte Cook Games permits web sites and similar fan-created publications for their games, subject to the policy given at http://www.numenera.com/fan-use-policy/. The contents of this site are for personal, non-commercial use only. Use of Monte Cook Games’s trademarks and copyrighted materials anywhere on this site and its associated files should not be construed as a challenge to those trademarks or copyrights. Materials on this site may not be reproduced or distributed except with the permission of the site owner and in compliance with Monte Cook Games policy given at http://www.numenera.com/fan-use-policy/.</div>
+        <div class="full-disclaimer-panel" style="display: none;">The Monte Cook Games logo, Numenera, and the Numenera logo are trademarks of Monte Cook Games, LLC in the U.S.A. and other countries. All Monte Cook Games characters and character names, and the distinctive likenesses thereof, are trademarks of
+            Monte Cook Games, LLC. Content on this site or associated files derived from Monte Cook Games publications is © 2013-2014 Monte Cook Games, LLC. Monte Cook Games permits web sites and similar fan-created publications for their games, subject
+            to the policy given at http://www.numenera.com/fan-use-policy/. The contents of this site are for personal, non-commercial use only. Use of Monte Cook Games’s trademarks and copyrighted materials anywhere on this site and its associated files
+            should not be construed as a challenge to those trademarks or copyrights. Materials on this site may not be reproduced or distributed except with the permission of the site owner and in compliance with Monte Cook Games policy given at http://www.numenera.com/fan-use-policy/.</div>
     </div>
     <script>
         $(document).ready(function() {
