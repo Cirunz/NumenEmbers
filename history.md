@@ -52,3 +52,9 @@ Release 0.5
 - showeffortpanel: 
     Added code to show preview for the calculated expense of the effort action.
     Added code to disable the ok button when the expense would take the current value below 0.
+
+Release 0.6
+- Added function "updateeffortpreview", to update the preview label with the effort cost.
+- showeffortpanel: added an initial call to updateeffortpreview, as soon as the box is showed.
+- Added plus and minus buttons for the effort value, in the effort box (better for touch devices).
+- Added support for enabling/disabling minsu button, in effort box, when effort value is 1 or less (0 here is useless).
